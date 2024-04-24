@@ -2,7 +2,8 @@ import cv2
 
 # import trained module
 
-cascade_classifier = cv2.CascadeClassifier("data/haarcascade_frontalface_alt2.xml")
+# cascade_classifier = cv2.CascadeClassifier("data/haarcascade_frontalface_alt2.xml")
+cascade_classifier = cv2.CascadeClassifier("data/haarcascade_frontalface_default.xml")
 
 # capture video using webcam
 video_capture = cv2.VideoCapture(0)
@@ -18,7 +19,7 @@ while True:
     # transform to gray image
     gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    faces = cascade_classifier.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    faces = cascade_classifier.detectMultiScale(gray_image, scaleFactor=1.2, minNeighbors=10, minSize=(30, 30))
 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 5)
